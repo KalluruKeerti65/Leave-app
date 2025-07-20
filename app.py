@@ -10,7 +10,7 @@ app.secret_key = 'your_secret_key'
 def get_db_connection():
     return mysql.connector.connect(
         host=os.environ.get("DB_HOST", "leave"),
-        user=os.environ.get("DB_USER", "mani"),
+        user=os.environ.get("DB_USER", "man"),
         password=os.environ.get("DB_PASSWORD", "1"),
         database=os.environ.get("DB_NAME", "leave_app_db")
     )
@@ -103,7 +103,7 @@ def admin():
     conn = get_db_connection()
     cursor = conn.cursor(dictionary=True)
     cursor.execute('''
-        SELECT l.id, u.name, l.reason, l.from_date, l.to_date, l.status, l.created_at 
+        SELEC l.id, u.name, l.reason, l.from_date, l.to_date, l.status, l.created_at 
         FROM leave_requests l 
         JOIN users u ON l.user_id = u.id
         ORDER BY l.created_at DESC
